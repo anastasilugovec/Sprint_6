@@ -16,10 +16,4 @@ def driver():
     yield drv
     drv.quit()
 
-# тестовые данные для позитивного сценария заказа
-@pytest.fixture(scope="session")
-def order_data_sets():
-    return [
-        {"name": "Иван Иванов", "phone": "+7 999 111 11 01", "address": "ул. Ленина, д. 1"},
-        {"name": "Мария Петрова", "phone": "+7 999 222 22 02", "address": "пр. Мира, д. 42"},
-    ]
+

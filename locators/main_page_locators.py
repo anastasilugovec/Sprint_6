@@ -1,9 +1,10 @@
 from selenium.webdriver.common.by import By
 
 class MainPageLocators:
-    order_button_up = By.XPATH, '//div[@class="Header_Nav__AGCXC"]/button[@class="Button_Button__ra12g" and text()="Заказать"]'
-    order_button_down = By.XPATH, '//button[contains(@class, "Button_Middle") and text() = "Заказать"]'
-    button_cookie = By.ID, 'rcc-confirm-button'
-    question_locator = By.XPATH, '//div[@id="accordion__heading-{}"]'
-    answer_locator = By.XPATH, '//div[@id="accordion__panel-{}"]/p'
-    question_locator_for_scroll = By.XPATH, '//div[@id="accordion__heading-7"]'
+    button_cookie = (By.ID, 'cookie_button_id')
+    order_button_up = (By.ID, 'order_button_up_id')
+    order_button_down = (By.ID, 'order_button_down_id')
+    question_locator_for_scroll = (By.CSS_SELECTOR, '.question-block')
+    question_locator_template = (By.CSS_SELECTOR, '.question[data-question-id="{}"]')
+    answer_locator_template = (By.CSS_SELECTOR, '.answer[data-question-id="{}"]')
+    title_order_page = (By.ID, 'order-page-title')

@@ -1,9 +1,9 @@
 import allure
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from locators.main_page_locators import MainPageLocators
-from pages.base_page import BasePage
 
-class MainPage(BasePage):
+class MainPage:
+    def __init__(self, driver):
+        self.driver = driver
 
     @allure.step('Принимаем Куки')
     def accept_cookie(self):
@@ -43,3 +43,19 @@ class MainPage(BasePage):
         self.scroll_for_question_block()
         return self.get_text_from_element(locator_answer)
 
+    @allure.step('Проверка отображения страницы заказа')
+    def is_order_page_displayed(self):
+        return self.is_element_displayed(MainPageLocators.title_order_page)
+
+    # Внутренний метод
+    def is_element_displayed(self, locator):
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium.webdriver.support import expected_conditions as EC
+        from selenium.common.exceptions import TimeoutException, NoSuchElementException
+
+        wait = WebDriverWait(self.driver, 5)
+        try:
+            element = wait.until(EC.visibility_of_element_located(locator))
+            return True
+        except (TimeoutException, NoSuchElementException):
+            return False
